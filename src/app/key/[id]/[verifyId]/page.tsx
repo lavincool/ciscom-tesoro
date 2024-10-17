@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import RenderKeyData from "./RenderKeyDatax";
+import RenderKeyDatax from "./RenderKeyDatax";
 import { LoadingSpinner } from "@/components/ui/LadingSpinner";
 import React from "react";
 
@@ -19,7 +19,7 @@ export default async function Page(props: {
 					</div>
 				}
 			>
-				<RenderKeyData id={id || ""} verifyKey={verifyId} />
+				<RenderKeyDatax id={id || ""} verifyKey={verifyId} />
 			</Suspense>
 		</div>
 	);

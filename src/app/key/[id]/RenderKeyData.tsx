@@ -27,13 +27,17 @@ export default async function RenderKeyData({ id }: { id: string }) {
 	}
 	return (
 		<div className="m-3">
+			<p className="bg-blue-900 p-3 font-bold text-3xl rounded-md mb-3">
+				Tesoro {data?.rows?.tesoro_id}
+			</p>
+
+			<p className="border-2 border-blue-400 p-3 rounded-md font-base text-2xl">
+				El código 1 es:{" "}
+				<span className="font-semibold text-blue-300">{data?.rows?.code}</span>
+			</p>
 			{data?.rows?.description && (
 				<KeyDescription description={data?.rows?.description} />
 			)}
-
-			<p>El código es: {data?.rows?.code}</p>
-			<p>Tesoro número {data?.rows?.tesoro_id}</p>
-			<p>Necesita validación: {data?.rows?.auth_first ? "Si" : "No"}</p>
 		</div>
 	);
 }
