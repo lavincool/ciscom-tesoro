@@ -1,12 +1,16 @@
 "use server";
 
 import { fetchRecData } from "./actions";
-import { KeyDescription } from "./components/KeyDescription";
-import { KeyRequired } from "./components/KeyRequired";
+import { KeyDescription } from "../components/KeyDescription";
+import { KeyRequired } from "../components/KeyRequired";
+import { AlertDestructive } from "./AlertDestructive";
 
-export default async function RenderKeyData({ id }: { id: string }) {
+export default async function RenderKeyDatax({
+	id,
+	verifyKey,
+}: { id: string; verifyKey: string }) {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	const data: any = await fetchRecData(id);
+	const data: any = await fetchRecData(id, verifyKey);
 	if (!data) return null;
 
 	console.log("data: ", data);
@@ -14,12 +18,12 @@ export default async function RenderKeyData({ id }: { id: string }) {
 	if (data?.errorKey) {
 		return <span>{data?.errorKey}</span>;
 	}
-	if (data?.rows?.length === 0 || data?.rows === undefined) {
-		return <span>No hay datos</span>;
-	}
-	if (data?.rows?.auth_first) {
+
+	if (!data?.rows?.code) {
 		return (
 			<div className="m-3">
+				<AlertDestructive />
+				<br />
 				<KeyDescription description="Ingresa el primer código de este tesoro para obtener el segundo" />
 				<KeyRequired keyId={id} />
 			</div>
