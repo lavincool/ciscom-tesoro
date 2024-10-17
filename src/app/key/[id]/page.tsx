@@ -3,10 +3,11 @@ import RenderKeyData from "./RenderKeyData";
 import { LoadingSpinner } from "@/components/ui/LadingSpinner";
 import React from "react";
 
-export default function Page({ params }: { params: { id: string } }) {
-	const { id } = params;
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
+    const { id } = params;
 
-	return (
+    return (
 		<div className="max-w-[850px] m-auto center text-center">
 			<Suspense
 				fallback={
