@@ -1,5 +1,6 @@
 "use server";
 
+import RenderTesoroId from "./[verifyId]/RenderTesoroId";
 import { fetchRecData } from "./actions";
 import { KeyDescription } from "./components/KeyDescription";
 import { KeyRequired } from "./components/KeyRequired";
@@ -20,6 +21,7 @@ export default async function RenderKeyData({ id }: { id: string }) {
 	if (data?.rows?.auth_first) {
 		return (
 			<div className="m-3">
+				<RenderTesoroId id={id} />
 				<KeyDescription description="Ingresa el primer código de este tesoro para obtener el segundo" />
 				<KeyRequired keyId={id} />
 			</div>
@@ -35,6 +37,7 @@ export default async function RenderKeyData({ id }: { id: string }) {
 				El código 1 es:{" "}
 				<span className="font-semibold text-blue-300">{data?.rows?.code}</span>
 			</p>
+			<br />
 			{data?.rows?.description && (
 				<KeyDescription description={data?.rows?.description} />
 			)}

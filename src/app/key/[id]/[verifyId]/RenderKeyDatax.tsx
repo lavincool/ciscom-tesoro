@@ -4,6 +4,7 @@ import { fetchRecData } from "./actions";
 import { KeyDescription } from "../components/KeyDescription";
 import { KeyRequired } from "../components/KeyRequired";
 import { AlertDestructive } from "./AlertDestructive";
+import RenderTesoroId from "./RenderTesoroId";
 
 export default async function RenderKeyDatax({
 	id,
@@ -22,6 +23,12 @@ export default async function RenderKeyDatax({
 	if (!data?.rows?.code) {
 		return (
 			<div className="m-3">
+				<p className="bg-blue-900 p-3 font-bold text-3xl rounded-md mb-3">
+					Tesoro {data?.rows?.tesoro_id}
+				</p>
+
+				<RenderTesoroId id={id} />
+
 				<AlertDestructive />
 				<br />
 				<KeyDescription description="Ingresa el primer código de este tesoro para obtener el segundo" />
@@ -31,7 +38,7 @@ export default async function RenderKeyDatax({
 	}
 	return (
 		<div className="m-3">
-			<KeyDescription description="Ya tienes los 2 códigos, ve por el tesoro" />
+			<KeyDescription description="Ya tienes los 2 códigos. Ve por el tesoro, presiona el logo de CISCOM coloca los códigos y ve a los S." />
 			<p className="bg-blue-900 p-3 font-bold text-3xl rounded-md mb-3">
 				Tesoro {data?.rows?.tesoro_id}
 			</p>

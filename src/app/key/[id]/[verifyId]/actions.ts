@@ -12,3 +12,13 @@ export const fetchRecData = async (keyId: string, verifyId: string) => {
 
 	return { rows: rows[0] };
 };
+
+export const fetchTesoroName = async (keyId: string) => {
+	const sql = neon(process.env.DATABASE_URL || "");
+
+	const rows = await sql`SELECT tesoro_id FROM tesoro.keys WHERE id = ${keyId}`;
+
+	console.log("READING DATA", rows);
+
+	return { rows: rows[0] };
+};
